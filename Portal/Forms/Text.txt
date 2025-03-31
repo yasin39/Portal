@@ -1,0 +1,54 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Portal.Forms.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server">My Website</asp:ContentPlaceHolder>
+    </title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 90px;
+            height: 90px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <img alt="Logo" class="auto-style1" longdesc="Bakanlık Logosu" src="../Images/UAB_Arma_orta.png" /><span></span>II. Bölge Müdürlüğü Portalı</span>
+        <div class="d-flex">
+            <nav class="bg-dark border-bottom border-body vh-100" data-bs-theme="dark" style="width: 200px;">
+                <ul class="nav flex-column navbar-nav p-3">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown link</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="flex-grow-1">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </div>
+    </form>
+    <script src="<%= ResolveUrl("~/Scripts/bootstrap.bundle.min.js") %>"></script>
+</body>
+</html>
