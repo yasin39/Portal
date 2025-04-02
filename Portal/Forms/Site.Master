@@ -5,37 +5,69 @@
 <html>
 <head runat="server">
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server">My Website</asp:ContentPlaceHolder></title>
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server">My Website</asp:ContentPlaceHolder>
+    </title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style>
+        /* Sabit sidebar stilleri */
+        .sidebar {
+            width: 200px; /* Sidebar genişliği */
+            height: 100vh; /* Tam ekran yüksekliği */
+            position: fixed; /* Sabit konum */
+            top: 0;
+            left: 0;
+            background-color: #212529; /* Bootstrap dark tema rengi */
+            color: white;
+            overflow-y: auto; /* İçerik taşarsa kaydırma çubuğu */
+        }
+
+            .sidebar .nav-link {
+                color: white;
+            }
+
+                .sidebar .nav-link:hover {
+                    background-color: #343a40; /* Hover efekti */
+                }
+
+        .content-wrapper {
+            margin-left: 280px; /* Sidebar genişliğine göre içerik kaydırma */
+            width: calc(100% - 280px); /* Kalan genişlik */
+            min-height: 100vh; /* İçerik alanının tam yükseklik alması */
+        }
+        /* Mobil uyumluluk için medya sorgusu */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px; /* Mobilde daha dar */
+            }
+
+            .content-wrapper {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="d-flex">
-            <!-- Toggle Button -->
-            <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Offcanvas Sidebar -->
-            <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel" data-bs-theme="dark">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="sidebarMenuLabel">Menu</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
+            <!-- Sabit Sidebar -->
+            <div class="sidebar">
+                <div class="p-3">
+                    <h5 class="mb-3">Menu</h5>
                     <ul class="nav flex-column navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="#">Anasayfa</a>
+                            <a class="nav-link active" aria-current="page" href="#">Anasayfa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Denetim Takip Sistemi</a>
+                            <a class="nav-link" href="#">Denetim Takip Sistemi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Araç Takip Sistemi</a>
+                            <a class="nav-link" href="#">Araç Takip Sistemi</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Personel İşlemleri</a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Personel İşlemleri</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="PersonelEkle.aspx">Personel Ekle/Düzenle</a></li>
                                 <li><a class="dropdown-item" href="#">Öğrenim Bilgisi Ekle</a></li>
@@ -54,8 +86,17 @@
             </div>
 
             <!-- Main Content -->
-            <div class="flex-grow-1">
+            <div class="content-wrapper">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Test Dropdown
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Item 1</a></li>
+                            <li><a class="dropdown-item" href="#">Item 2</a></li>
+                        </ul>
+                    </div>
                 </asp:ContentPlaceHolder>
             </div>
         </div>

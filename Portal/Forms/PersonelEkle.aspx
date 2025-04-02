@@ -5,6 +5,50 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            z-index: 1001; /* Backdrop'tan üstte olsun */
+            width: 400px; /* Sabit bir genişlik */
+            height: 200px; /* Sabit bir yükseklik, kısaltıyoruz */
+            overflow-y: auto; /* İçerik taşarsa kaydırma çubuğu çıksın */
+        }
+
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000; /* Modalın altında kalsın */
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        .modal-backdrop.show {
+            display: block;
+        }
+    </style>
+
+    <div id="customModal" class="modal">
+        <h3>İşlem Başarılı</h3>
+        <asp:Label ID="lblModalMessage" runat="server" Text=""></asp:Label>
+        <br />
+        <button type="button" onclick="closeModal()">Tamam</button>
+    </div>
+
+    <div id="modalBackdrop" class="modal-backdrop"></div>
     <asp:Panel ID="pnlYazdır" runat="server">
         <div class="row-fluid sortable">
             <div class="box span12">
@@ -20,9 +64,11 @@
                 </div>
                 <div class="box-content">
                     <form class="form-horizontal">
+                        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+
                         <fieldset>
-
-
 
                             <div class="priority high"><span><i class="icon-credit-card"></i>--Kimlik Bilgileri</span></div>
                             <div class="task high">
@@ -71,7 +117,7 @@
                                         </td>
                                         <td>Durum</td>
                                         <td>
-                                            <asp:DropDownList ID="ddlCalismaDurumu" runat="server">
+                                            <asp:DropDownList ID="ddlDurum" runat="server">
                                                 <asp:ListItem>Aktif</asp:ListItem>
                                                 <asp:ListItem>Pasif</asp:ListItem>
                                             </asp:DropDownList>
@@ -98,7 +144,7 @@
                                         </td>
                                         <td class="auto-style1">Personel Durumu</td>
                                         <td class="auto-style1">
-                                            <asp:DropDownList ID="ddlDurum" runat="server">
+                                            <asp:DropDownList ID="ddlCalismaDurumu" runat="server">
                                                 <asp:ListItem>Kadrolu Aktif Çalışan</asp:ListItem>
                                                 <asp:ListItem>Geçici Görevli Aktif Çalışan</asp:ListItem>
                                                 <asp:ListItem>Geçici Görevde Pasif Çalışan</asp:ListItem>
@@ -225,7 +271,7 @@
                                                         <td>Öğrenim Durumu (Son mezun olunan)</td>
                                                         <td>
                                                             <asp:DropDownList ID="ddlOgrenimListesi" runat="server">
-                                                                <asp:ListItem>ilk Okul</asp:ListItem>
+                                                                <asp:ListItem>İlk Okul</asp:ListItem>
                                                                 <asp:ListItem>Orta Okul</asp:ListItem>
                                                                 <asp:ListItem>Lise</asp:ListItem>
                                                                 <asp:ListItem>Yüksek Okul</asp:ListItem>
@@ -412,4 +458,15 @@
             </div>
             <!--/span-->
     </asp:Panel>
+    <script>
+        function showModal() {
+            document.getElementById('customModal').classList.add('show');
+            document.getElementById('modalBackdrop').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('customModal').classList.remove('show');
+            document.getElementById('modalBackdrop').classList.remove('show');
+        }
+</script>
 </asp:Content>

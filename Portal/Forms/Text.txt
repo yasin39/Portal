@@ -10,45 +10,64 @@
     </title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <style type="text/css">
-        .auto-style1 {
-            width: 90px;
-            height: 90px;
-        }
-    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <img alt="Logo" class="auto-style1" longdesc="Bakanlık Logosu" src="../Images/UAB_Arma_orta.png" /><span></span>II. Bölge Müdürlüğü Portalı</span>
         <div class="d-flex">
-            <nav class="bg-dark border-bottom border-body vh-100" data-bs-theme="dark" style="width: 200px;">
-                <ul class="nav flex-column navbar-nav p-3">
-                    <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown link</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
+            <!-- Toggle Button -->
+            <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Offcanvas Sidebar -->
+            <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel" data-bs-theme="dark">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="sidebarMenuLabel">Menu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="nav flex-column navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" aria-current="page" href="#">Anasayfa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Denetim Takip Sistemi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Araç Takip Sistemi</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Personel İşlemleri</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="PersonelEkle.aspx">Personel Ekle/Düzenle</a></li>
+                                <li><a class="dropdown-item" href="#">Öğrenim Bilgisi Ekle</a></li>
+                                <li><a class="dropdown-item" href="#">Personel Arama</a></li>
+                                <li><a class="dropdown-item" href="#">Personel Raporlama</a></li>
+                                <li><a class="dropdown-item" href="#">Personel Listesi</a></li>
+                                <li><a class="dropdown-item" href="#">İzin Girişi</a></li>
+                                <li><a class="dropdown-item" href="#">İzin Arama</a></li>
+                                <li><a class="dropdown-item" href="#">Genel İzin Raporlama</a></li>
+                                <li><a class="dropdown-item" href="#">Toplu SMS & Email</a></li>
+                                <li><a class="dropdown-item" href="#">Personel Tanımlamalar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
             <div class="flex-grow-1">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
-
         </div>
     </form>
     <script src="<%= ResolveUrl("~/Scripts/bootstrap.bundle.min.js") %>"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var sidebar = new bootstrap.Offcanvas(document.getElementById('sidebarMenu'));
+            sidebar.show();
+        });
+</script>
 </body>
 </html>

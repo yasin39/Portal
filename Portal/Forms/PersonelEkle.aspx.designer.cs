@@ -15,6 +15,15 @@ namespace Portal.Forms
     {
 
         /// <summary>
+        /// lblModalMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModalMessage;
+
+        /// <summary>
         /// pnlYazdır control.
         /// </summary>
         /// <remarks>
@@ -114,13 +123,13 @@ namespace Portal.Forms
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// ddlCalismaDurumu control.
+        /// ddlDurum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCalismaDurumu;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDurum;
 
         /// <summary>
         /// txtSicil control.
@@ -150,13 +159,13 @@ namespace Portal.Forms
         protected global::System.Web.UI.HtmlControls.HtmlButton btnSicildenBilgiGetir;
 
         /// <summary>
-        /// ddlDurum control.
+        /// ddlCalismaDurumu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDurum;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCalismaDurumu;
 
         /// <summary>
         /// ddlUnvan control.

@@ -4,6 +4,7 @@ using Portal.DataAccess.Model;
 using Portal.Helpers;
 using System;
 using System.Linq;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Portal.Forms
@@ -15,9 +16,9 @@ namespace Portal.Forms
             if (!IsPostBack)
             {
                 Logger.Log("Personel Ekle Page Load başlatıldı.");
-               // YetkiKontrol();
+                // YetkiKontrol();
                 DropDownListleriDoldur();
-                
+
             }
         }
 
@@ -72,8 +73,16 @@ namespace Portal.Forms
                 }
                 Personel yeniPersonel = UIdenPersonelNesnesiOlustur();
                 bool sonuc = PersonelManager.PersonelEkle(yeniPersonel);
-                lblSonuc.Text = sonuc ? "Personel başarıyla eklendi." : "Personel eklenemedi.";
-                Response.Redirect($"personelkayit.aspx?success={sonuc}");
+
+                if (sonuc)
+                {
+                    lblModalMessage.Text = "Ekleme işlemi başarılı.";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showModal", "showModal();", true);
+                }
+                else
+                {
+                    lblSonuc.Text = "Personel eklenemedi.";
+                }
             }
             catch (Exception ex)
             {
@@ -88,7 +97,15 @@ namespace Portal.Forms
             {
                 Personel guncellenenPersonel = UIdenPersonelNesnesiOlustur();
                 bool sonuc = PersonelManager.PersonelGuncelle(guncellenenPersonel);
-                Response.Redirect($"personelkayit.aspx?updated={sonuc}");
+                if (sonuc)
+                {
+                    lblModalMessage.Text = "Güncelleme işlemi başarılı.";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showModal", "showModal();", true);
+                }
+                else
+                {
+                    lblSonuc.Text = "Personel güncellenemedi.";
+                }
             }
             catch (Exception ex)
             {
